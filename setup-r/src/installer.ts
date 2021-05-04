@@ -36,7 +36,11 @@ export async function getR(version: string) {
   }
   let rtoolsVersion =
     core.getInput("rtools-version") || (version.charAt(0) == "3" ? "35" : "40");
-
+  core.info(core.getInput("rtools-version"))
+  core.info(rtoolsVersion)
+  core.debug(core.getInput("rtools-version"))
+  core.debug(rtoolsVersion)
+  
   let toolPath = tc.find("R", version);
 
   if (toolPath) {
