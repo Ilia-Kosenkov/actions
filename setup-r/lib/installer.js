@@ -351,16 +351,18 @@ function acquireRWindows(version) {
 function acquireRtools(version) {
     return __awaiter(this, void 0, void 0, function* () {
         const rtools4 = version.charAt(0) == "4";
+        core.info(version);
         let fileName = util.format(rtools4 ? "rtools%s-x86_64.exe" : "Rtools%s.exe", version);
         // If Rtools is already installed just return, as there is a message box
         // which hangs the build otherwise.
         if ((!rtools4 && fs.existsSync("C:\\Rtools")) ||
             (rtools4 && fs.existsSync("C:\\rtools40"))) {
             core.debug("Skipping Rtools installation as a suitable Rtools is already installed");
-        }
+            core.info("Skipping Rtools installation as a suitable Rtools is already installed");        }
         else {
             let downloadUrl = util.format("http://cloud.r-project.org/bin/windows/Rtools/%s", fileName);
             console.log(`Downloading ${downloadUrl}...`);
+            core.info(`Downloading ${downloadUrl}...`);
             let downloadPath = null;
             try {
                 downloadPath = yield tc.downloadTool(downloadUrl);
