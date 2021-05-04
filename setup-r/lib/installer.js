@@ -71,15 +71,15 @@ function getR(version) {
         
         core.info(core.getInput("rtools-version"));
         core.info(rtoolsVersion);
-        core.debug(core.getInput("rtools-version"));
-        core.debug(rtoolsVersion);
-        
+                
         let toolPath = tc.find("R", version);
         if (toolPath) {
             core.debug(`Tool found in cache ${toolPath}`);
+            core.info(`Tool found in cache ${toolPath}`);
         }
         else {
             try {
+                core.info(`In acquireR`);
                 yield acquireR(version, rtoolsVersion);
             }
             catch (error) {
